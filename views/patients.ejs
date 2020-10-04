@@ -1,0 +1,12 @@
+<h1>This is the patients list</h1>
+
+<% patients.forEach(function(patients){ %>
+   <div>
+       <h4><%= patients.Name %></h4>
+       <img src="<%= patients.image%>">
+       <p>
+           <a href="/patients/<%= patients._id %>">Patient Details</a>
+           <a href="/home">Patient Message</a>
+       </p>
+   </div>
+<%}); %>
