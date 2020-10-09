@@ -42,14 +42,13 @@ var patientdetailsSchema = new mongoose.Schema({
 
 var patientdetails = mongoose.model("patientdetails",patientdetailsSchema);
 
-patientdetails.create({
+/*patientdetails.create({
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png",
     Name: "Rajendar P",
     DOB: "1936-09-08",
     Age: 84,
     Contact: 9962562252,
-    Address: "Coimbatore",
-    Message: "Hello"
+    Address: "Coimbatore"
 },function(err,patient){
     if(err){
         console.log(err);
@@ -58,14 +57,14 @@ patientdetails.create({
         console.log("NEWLY CREATED");
         console.log(patient);
     }
-});
+});*/
 
 
 app.get("/",function(req,res){
     res.render("landing");
 });
 
-app.get("/patients",function(req,res){
+app.get("/patients",isLoggedIn,function(req,res){
     patientdetails.find({},function(err, patients){
         if(err){
             console.log(err);
@@ -76,22 +75,11 @@ app.get("/patients",function(req,res){
     });
 });
 
-/*app.get("/home",function(req,res){
+app.get("/home",function(req,res){
     res.render("home");
-});*/
-
-app.get("/secret/:id",function(req,res){
-    patientdetails.findById(req.params.id,function(err,foundpatient){
-       if(err){
-           console.log("something gone wrong");
-       }
-       else{
-           res.render("secret",{patient:foundpatient});
-       }
-    });
 });
 
-/*app.get("/register",function(req,res){
+app.get("/register",function(req,res){
     res.render("register");
 });
 app.post("/register",function(req,res){
@@ -101,16 +89,16 @@ app.post("/register",function(req,res){
             return res.render("register");
         }
         passport.authenticate("local")(req,res,function(){
-            res.redirect("/secret/:id");
+            res.redirect("/patients");
         });
     });
-});*/
+});
 
-/*app.get("/login",function(req,res){
+app.get("/login",function(req,res){
     res.render("login");
 });
 app.post("/login",passport.authenticate("local",{
-    successRedirect:"/secret/:id",
+    successRedirect:"/patients",
     failureRedirect:"/login"
 }),function(req,res){
 });
@@ -118,7 +106,7 @@ app.post("/login",passport.authenticate("local",{
 app.get("/logout",function(req,res){
     req.logout();
     res.redirect("/");
-})*/
+})
 
 app.get("/patients/:id",function(req,res){
     patientdetails.findById(req.params.id,function(err,foundpatient){
@@ -131,12 +119,23 @@ app.get("/patients/:id",function(req,res){
     });
 });
 
-/*function isLoggedIn(req, res, next){
+app.get("/message/:id",function(req,res){
+    patientdetails.findById(req.params.id,function(err,foundpatient){
+       if(err){
+           console.log("something gone wrong");
+       }
+       else{
+           res.render("secret",{patient:foundpatient});
+       }
+    });
+});
+
+function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
     res.redirect("/login");
-}*/
+}
 
 app.listen(3000, function(){
     console.log("Server has started");
