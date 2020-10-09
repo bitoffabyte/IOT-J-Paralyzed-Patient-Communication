@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="200dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    tools:context=".Signup">
+    <EditText
+        android:id="@+id/supname"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="enter your name"
+        android:textColor="#ffffff">
+    </EditText>
+    <EditText
+        android:id="@+id/supemail"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="enter your email"
+        android:textColor="#ffffff">
+    </EditText>
+
+    <EditText
+        android:id="@+id/suppassword"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="password(more than 4 letters)"
+        android:textColor="#ffffff">
+    </EditText>
+    <Button
+        android:id="@+id/sup_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:padding="12dp"
+        android:text="SignUp"
+        android:background="#D00057B3">
+    </Button>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_link"
+        android:text="Already have an Account?"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"
+        android:textSize="16dp"
+        android:textColor="#ffffff"/>
+</LinearLayout>
+
+
+
